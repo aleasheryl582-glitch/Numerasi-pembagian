@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Microsite Numerasi - Trik Pembagian">
+  <title>Trik Pembagian | NumerasiKu</title>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    :root{
+      --primary:#2563eb;
+      --secondary:#7c3aed;
+      --accent:#0891b2;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#1e293b;
+      --muted:#64748b;
+      --success:#16a34a;
+      --danger:#dc2626;
+      --border:#e2e8f0;
+    }
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+
+    .nav{
+      max-width:1100px;
+      margin:auto;
+      padding:14px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+    }
+
+    .logo{
+      font-size:1.15rem;
+      font-weight:800;
+      color:var(--primary);
+      white-space:nowrap;
+    }
+
+    .links{
+      display:flex;
+      gap:18px;
+      list-style:none;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .links a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      font-size:.92rem;
+    }
+
+    .links a:hover{color:var(--primary)}
+
+    .hero{
+      min-height:82vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:70px 20px;
+      background:linear-gradient(135deg,#dbeafe,#ede9fe 55%,#cffafe);
+    }
+
+    .hero-content{max-width:780px}
+
+    .hero-icon{
+      font-size:5rem;
+      margin-bottom:10px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:7px 14px;
+      border-radius:99px;
+      background:#fff;
+      color:var(--primary);
+      border:1px solid #bfdbfe;
+      font-weight:700;
+      margin-bottom:15px;
+    }
+
+    .hero h1{
+      font-size:clamp(2.6rem,8vw,5rem);
+      line-height:1.05;
+      color:#172554;
+      margin-bottom:18px;
+    }
+
+    .hero h1 span{color:var(--primary)}
+
+    .hero p{
+      max-width:680px;
+      margin:0 auto 28px;
+      color:var(--muted);
+      font-size:1.1rem;
+    }
+
+    .btn{
+      display:inline-block;
+      border:0;
+      border-radius:13px;
+      padding:13px 22px;
+      background:var(--primary);
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      filter:brightness(.95);
+    }
+
+    section{padding:70px 20px}
+
+    .container{
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .title{
+      text-align:center;
+      font-size:2rem;
+      color:#172554;
+      margin-bottom:12px;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:35px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:0 8px 25px rgba(15,23,42,.05);
+    }
+
+    .icon{
+      font-size:2.2rem;
+      margin-bottom:10px;
+    }
+
+    .card h3{
+      color:var(--primary);
+      margin-bottom:8px;
+    }
+
+    .card p{color:var(--muted)}
+
+    .trik{background:#fff}
+
+    .steps{
+      display:grid;
+      gap:15px;
+    }
+
+    .step{
+      display:flex;
+      gap:16px;
+      padding:20px;
+      border-radius:17px;
+      background:#f8fafc;
+      border:1px solid var(--border);
+    }
+
+    .num{
+      flex:0 0 42px;
+      height:42px;
+      border-radius:50%;
+      background:var(--primary);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+    }
+
+    .step h3{margin-bottom:5px}
+
+    .example{
+      margin-top:20px;
+      padding:24px;
+      border-radius:17px;
+      text-align:center;
+      background:#eef2ff;
+      color:#3730a3;
+      font-size:1.3rem;
+      font-weight:700;
+    }
+
+    .calculator{
+      background:linear-gradient(135deg,#eff6ff,#ecfeff);
+    }
+
+    .calc{
+      max-width:600px;
+      margin:auto;
+      padding:28px;
+      background:white;
+      border-radius:22px;
+      box-shadow:0 10px 35px rgba(15,23,42,.08);
+    }
+
+    .inputs{
+      display:grid;
+      grid-template-columns:1fr 45px 1fr;
+      gap:10px;
+      align-items:center;
+    }
+
+    .inputs input{
+      width:100%;
+      padding:14px;
+      border:2px solid var(--border);
+      border-radius:12px;
+      font-size:1.05rem;
+      outline:none;
+    }
+
+    .inputs input:focus{border-color:var(--primary)}
+
+    .symbol{
+      text-align:center;
+      font-size:1.5rem;
+      font-weight:900;
+    }
+
+    .calc .btn{
+      width:100%;
+      margin-top:17px;
+    }
+
+    .result{
+      min-height:45px;
+      margin-top:18px;
+      text-align:center;
+      font-size:1.45rem;
+      font-weight:900;
+    }
+
+    .remainder{
+      margin-top:8px;
+      text-align:center;
+      color:var(--muted);
+      min-height:25px;
+    }
+
+    .quiz{background:#fff}
+
+    .question{
+      padding:22px;
+      margin-bottom:15px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:#f8fafc;
+    }
+
+    .question h3{
+      margin-bottom:12px;
+    }
+
+    .option{
+      display:block;
+      padding:10px 12px;
+      margin:7px 0;
+      border-radius:10px;
+      background:white;
+      border:1px solid var(--border);
+      cursor:pointer;
+    }
+
+    .option:hover{
+      background:#eef2ff;
+      border-color:#a5b4fc;
+    }
+
+    .option input{
+      width:auto;
+      margin-right:8px;
+    }
+
+    .quiz-actions{
+      text-align:center;
+      margin-top:22px;
+    }
+
+    .score{
+      text-align:center;
+      margin-top:20px;
+      min-height:40px;
+      font-size:1.3rem;
+      font-weight:800;
+    }
+
+    .tips{
+      margin-top:30px;
+      padding:20px;
+      border-radius:17px;
+      background:#f5f3ff;
+    }
+
+    .tips h3{
+      color:var(--secondary);
+      margin-bottom:7px;
+    }
+
+    footer{
+      text-align:center;
+      background:#172554;
+      color:#fff;
+      padding:30px 20px;
+    }
+
+    footer p{
+      margin:4px;
+      opacity:.9;
+    }
+
+    .top{
+      display:block;
+      text-align:center;
+      padding:18px;
+      color:var(--primary);
+      text-decoration:none;
+      font-weight:700;
+      background:#fff;
+    }
+
+    @media(max-width:650px){
+      .nav{
+        flex-direction:column;
+      }
+
+      .links{gap:11px}
+
+      .hero{
+        min-height:75vh;
+        padding-top:55px;
+      }
+
+      .hero-icon{font-size:4rem}
+
+      .inputs{
+        grid-template-columns:1fr;
+      }
+
+      .symbol{
+        padding:2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGASI -->
+  <nav id="atas">
+    <div class="nav">
+      <div class="logo">🔢 NumerasiKu</div>
+
+      <ul class="links">
+        <li><a href="#materi">Materi</a></li>
+        <li><a href="#trik">Trik</a></li>
+        <li><a href="#hitung">Hitung</a></li>
+        <li><a href="#latihan">Latihan</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+
+      <div class="hero-icon">➗🧠</div>
+
+      <div class="badge">📚 Microsite Numerasi</div>
+
+      <h1>Trik <span>Pembagian</span></h1>
+
+      <p>
+        Pelajari cara membagi bilangan dengan lebih mudah,
+        cepat, dan menyenangkan melalui beberapa trik sederhana.
+      </p>
+
+      <a href="#materi" class="btn">Mulai Belajar 🚀</a>
+
+    </div>
+  </header>
+
+  <!-- MATERI -->
+  <section id="materi">
+    <div class="container">
+
+      <h2 class="title">📖 Mengenal Pembagian</h2>
+
+      <p class="subtitle">
+        Pembagian adalah proses membagi suatu bilangan menjadi beberapa bagian yang sama besar.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="icon">➗</div>
+          <h3>Simbol Pembagian</h3>
+          <p>
+            Pembagian dapat ditulis menggunakan simbol ÷ atau tanda garis miring (/).
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🍎</div>
+          <h3>Contoh Sederhana</h3>
+          <p>
+            12 ÷ 3 = 4. Artinya, 12 dibagi menjadi 3 kelompok yang sama, masing-masing berisi 4.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧠</div>
+          <h3>Hubungan dengan Perkalian</h3>
+          <p>
+            Pembagian dapat diperiksa menggunakan perkalian. Jika 24 ÷ 6 = 4, maka 4 × 6 = 24.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIK -->
+  <section id="trik" class="trik">
+    <div class="container">
+
+      <h2 class="title">💡 Trik Mudah Pembagian</h2>
+
+      <p class="subtitle">
+        Gunakan strategi berikut agar perhitungan pembagian terasa lebih sederhana.
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <h3>Gunakan Fakta Perkalian</h3>
+            <p>
+              Untuk mencari 36 ÷ 6, tanyakan:
+              "6 dikali berapa hasilnya 36?"
+              Jawabannya adalah 6.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <h3>Pecah Bilangan</h3>
+            <p>
+              Contoh 84 ÷ 4 dapat dipikirkan sebagai
+              80 ÷ 4 + 4 ÷ 4 = 20 + 1 = 21.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <h3>Perhatikan Nol</h3>
+            <p>
+              Pada pembagian dengan 10, 100, atau 1.000,
+              kita dapat memindahkan tanda desimal ke kiri sesuai jumlah nol.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="example">
+        84 ÷ 4 = (80 ÷ 4) + (4 ÷ 4)
+        <br>
+        = 20 + 1
+        <br>
+        = <strong>21</strong>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KALKULATOR -->
+  <section id="hitung" class="calculator">
+    <div class="container">
+
+      <h2 class="title">🧮 Coba Pembagian</h2>
+
+      <p class="subtitle">
+        Masukkan bilangan yang ingin kamu bagi.
+      </p>
+
+      <div class="calc">
+
+        <div class="inputs">
+
+          <input
+            id="angka1"
+            type="number"
+            placeholder="Bilangan yang dibagi"
+          >
+
+          <div class="symbol">÷</div>
+
+          <input
+            id="angka2"
+            type="number"
+            placeholder="Pembagi"
+          >
+
+        </div>
+
+        <button class="btn" onclick="hitungPembagian()">
+          Hitung Sekarang
+        </button>
+
+        <div class="result" id="hasil">
+          Hasil akan muncul di sini
+        </div>
+
+        <div class="remainder" id="sisa"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LATIHAN -->
+  <section id="latihan" class="quiz">
+
+    <div class="container">
+
+      <h2 class="title">🎯 Tantangan 10 Soal</h2>
+
+      <p class="subtitle">
+        Pilih jawaban yang menurutmu benar, kemudian periksa hasilnya.
+      </p>
+
+      <form id="quizForm"></form>
+
+      <div class="quiz-actions">
+        <button
+          class="btn"
+          type="button"
+          onclick="cekJawaban()"
+        >
+          Periksa Jawaban ✅
+        </button>
+      </div>
+
+      <div class="score" id="score"></div>
+
+      <div class="tips">
+        <h3>💡 Tips Mengerjakan</h3>
+        <p>
+          Ingat fakta perkalian yang sudah kamu pelajari.
+          Pembagian dan perkalian saling berhubungan.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>🔢 NumerasiKu — Trik Pembagian</strong></p>
+    <p>Microsite Numerasi untuk Tugas Informatika</p>
+    <p>© 2026</p>
+  </footer>
+
+  <a class="top" href="#atas">⬆ Kembali ke atas</a>
+
+  <script>
+    // ==============================
+    // KALKULATOR PEMBAGIAN
+    // ==============================
+    function hitungPembagian() {
+
+      const angka1 = document.getElementById("angka1");
+      const angka2 = document.getElementById("angka2");
+      const hasil = document.getElementById("hasil");
+      const sisa = document.getElementById("sisa");
+
+      if (angka1.value === "" || angka2.value === "") {
+        hasil.textContent = "⚠️ Masukkan kedua angka terlebih dahulu.";
+        hasil.style.color = "var(--danger)";
+        sisa.textContent = "";
+        return;
+      }
+
+      const a = Number(angka1.value);
+      const b = Number(angka2.value);
+
+      if (b === 0) {
+        hasil.textContent = "⚠️ Bilangan tidak dapat dibagi dengan 0.";
+        hasil.style.color = "var(--danger)";
+        sisa.textContent = "";
+        return;
+      }
+
+      const hasilBagi = a / b;
+      const sisaBagi = a % b;
+
+      hasil.textContent = `${a} ÷ ${b} = ${hasilBagi}`;
+      hasil.style.color = "var(--success)";
+
+      if (Number.isInteger(hasilBagi)) {
+        sisa.textContent = "Tidak ada sisa.";
+      } else {
+        sisa.textContent =
+          `Sisa pembagian = ${sisaBagi}`;
+      }
+    }
+
+
+    // ==============================
+    // DATA SOAL
+    // ==============================
+    const soal = [
+
+      ["12 ÷ 3 = ?", ["3", "4", "5"], "4"],
+
+      ["24 ÷ 6 = ?", ["3", "4", "5"], "4"],
+
+      ["36 ÷ 4 = ?", ["8", "9", "10"], "9"],
+
+      ["45 ÷ 5 = ?", ["7", "8", "9"], "9"],
+
+      ["56 ÷ 7 = ?", ["6", "7", "8"], "8"],
+
+      ["72 ÷ 8 = ?", ["7", "8", "9"], "9"],
+
+      ["81 ÷ 9 = ?", ["8", "9", "10"], "9"],
+
+      ["100 ÷ 10 = ?", ["10", "20", "100"], "10"],
+
+      ["144 ÷ 12 = ?", ["10", "12", "14"], "12"],
+
+      ["200 ÷ 20 = ?", ["5", "10", "20"], "10"]
+
+    ];
+
+
+    // ==============================
+    // MEMBUAT SOAL OTOMATIS
+    // ==============================
+    const form = document.getElementById("quizForm");
+
+    soal.forEach((s, i) => {
+
+      const div = document.createElement("div");
+
+      div.className = "question";
+
+      div.innerHTML =
+        `<h3>${i + 1}. ${s[0]}</h3>` +
+        s[1].map(option =>
+          `<label class="option">
+            <input
+              type="radio"
+              name="q${i}"
+              value="${option}"
+            >
+            ${option}
+          </label>`
+        ).join("");
+
+      form.appendChild(div);
+
+    });
+
+
+    // ==============================
+    // CEK JAWABAN
+    // ==============================
+    function cekJawaban() {
+
+      let benar = 0;
+      let dijawab = 0;
+
+      soal.forEach((s, i) => {
+
+        const pilihan =
+          document.querySelector(
+            `input[name="q${i}"]:checked`
+          );
+
+        if (pilihan) {
+
+          dijawab++;
+
+          if (pilihan.value === s[2]) {
+            benar++;
+          }
+
+        }
+
+      });
+
+      const nilai =
+        Math.round((benar / soal.length) * 100);
+
+      let pesan;
+
+      if (nilai === 100) {
+
+        pesan = "🏆 Luar biasa! Semua jawaban benar!";
+
+      } else if (nilai >= 80) {
+
+        pesan = "🌟 Hebat! Pemahamanmu sudah bagus!";
+
+      } else if (nilai >= 60) {
+
+        pesan = "👍 Bagus! Coba lagi untuk meningkatkan nilai.";
+
+      } else {
+
+        pesan = "💪 Tetap semangat! Pelajari triknya dan coba lagi.";
+
+      }
+
+      document.getElementById("score").innerHTML =
+        `${pesan}<br>
+        Skor: ${benar}/10 • Nilai: ${nilai} •
+        Dijawab: ${dijawab}/10`;
+
+    }
+  </script>
+
+</body>
+</html>
